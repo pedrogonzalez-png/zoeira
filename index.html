@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sim ou Não</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <h1>vai me dar?</h1>
+  <div class="botoes">
+    <button class="sim" onclick="redirecionarParaVideo()">Sim</button>
+    <button class="nao">Não</button>
+  </div>
+
+  <script>
+    function redirecionarParaVideo() {
+      window.location.href = "https://www.youtube.com/watch?v=QUlMp1X1Gtk";  // Link do vídeo
+    }
+
+    const botaoNao = document.querySelector('.nao');
+    const container = document.querySelector('.botoes');
+
+    container.addEventListener('mousemove', (e) => {
+      const rect = botaoNao.getBoundingClientRect();
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const offsetX = mouseX - rect.left - rect.width / 2;
+      const offsetY = mouseY - rect.top - rect.height / 2;
+
+      const distancia = Math.sqrt(offsetX ** 2 + offsetY ** 2);
+
+      if (distancia < 100) {
+        let newX = Math.random() * (container.offsetWidth - botaoNao.offsetWidth);
+        let newY = Math.random() * (container.offsetHeight - botaoNao.offsetHeight);
+
+        botaoNao.style.left = `${newX}px`;
+        botaoNao.style.top = `${newY}px`;
+      }
+    });
+  </script>
+
+</body>
+</html>
